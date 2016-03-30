@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Canvas Clock</title>
+    <script src="main.js"></script>
+</head>
+<body>
+<canvas id="CanvasClock" width="500" height="600" >
+
+
+</canvas>
+
+</body>
+
+
+
+<script>
+    function angle(degree)
+    {
+        var variable=Math.PI/180;
+        return degree*variable;
+    }
+
+
+
+    var c = document.getElementById("CanvasClock");
+    var ctx = c.getContext("2d");
+    var ctx1 = c.getContext("2d");
+
+
+    function Time() {
+        var d = new Date();
+        var hours = d.getHours();
+        var min = d.getMinutes();
+        var sec = d.getSeconds();
+        var today = d.toDateString();
+        var time = d.toLocaleTimeString();
+
+
+        ctx.fillStyle="#000d1a";
+        ctx.fillRect(0,0,600,500);
+
+
+
+
+        ctx.lineWidth=26;
+        ctx.lineCap='round';
+
+//hour
+        ctx.beginPath();
+        ctx.strokeStyle="#ff6600";
+        ctx.arc(250, 250, 200, angle(270), angle((hours * 32) - 90));
+        ctx.fill();
+        ctx.stroke();
+//min
+        ctx.beginPath();
+        ctx.strokeStyle="#ff3333";
+        ctx.arc(250, 250, 170, angle(270), angle((min * 5.9) - 90));
+        ctx.fill();
+        ctx.stroke();
+
+
+
+//sec
+        ctx.beginPath();
+
+        ctx.strokeStyle=" #ffd633";
+        ctx.arc(250, 250, 140, angle(270), angle((sec * 5.9) - 90));
+        ctx.fill();
+        ctx.stroke();
+
+//day
+        ctx.font="20px Verdana";
+
+        ctx.fillStyle="#bf80ff";
+        ctx.fillText(today,175,240);
+//time
+        ctx.font="15px Verdana";
+
+        ctx.fillStyle="#bf80ff";
+        ctx.fillText(time,210,260);
+
+
+    }
+    setInterval(Time,40)
+
+</script>
+</html>
